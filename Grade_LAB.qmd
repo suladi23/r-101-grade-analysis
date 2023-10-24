@@ -45,4 +45,12 @@ ggplot(grades, aes(x=Exam))+
   labs(x="Exam grades", y= "count")
 ```
 
+### Question 5
+```{r}
+grades |>
+  group_by(Group) |>
+  summarise(N=n()) |>
+  knitr::kable()
+```
+
 
