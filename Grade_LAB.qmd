@@ -10,11 +10,41 @@ editor: visual
 #| message: false
 here::i_am("grade_analysis_LAB.Rproj")
 library(here)
-library(vroom) ## or readr
+library(vroom)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
 ```
 
 ## Grade analisys LAB
+
+### Question 1
+```{r}
+#| echo: false
+#| message: false
+grades <- vroom(here("grades.csv"))
+```
+
+### Question 2
+```{r}
+grades |>
+  summarise(min(Exam, na.rm = TRUE), max(Exam, na.rm = TRUE), mean(Exam,na.rm = TRUE),n()) |>
+  knitr::kable()
+```
+
+### Question 3
+```{r}
+student_missing <- sum(is.na(grades$Exam))
+```
+There are `student_missing` students that did not take the final exam.
+
+### Question 4
+```{r}
+#| echo: false
+#| message: false
+#meanExam <- mean(grades$Exam, na.rm=TRUE)
+#ggplot(meanExam, aes(x=Id)) +
+#  geom_line(aes(y=meanExam), color="green") +
+#  labs(x="Students", y="Average grade")
+```
 
