@@ -1,0 +1,20 @@
+---
+title: "grade_analysis"
+author: "Disem Sula"
+format: html
+editor: visual
+---
+
+```{r}
+#| echo: false
+#| message: false
+here::i_am("grade_analysis_LAB.Rproj")
+library(here)
+library(vroom) ## or readr
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+
+## Grade analisys LAB
+
