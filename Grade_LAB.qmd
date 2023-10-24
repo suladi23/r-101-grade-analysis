@@ -53,4 +53,17 @@ grades |>
   knitr::kable()
 ```
 
+### Question 6
+```{r}
+ggplot(grades, aes(x=grades$Group))+
+  geom_histogram(binwidth=1.5) +
+  labs(x="group", y= "number")
+```
+
+### Question 7
+```{r}
+ggplot(grades, aes(x = Group, y = Exam)) + 
+  geom_boxplot() +
+  labs(x="groups", y="grade")
+```
 
