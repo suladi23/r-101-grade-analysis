@@ -135,3 +135,13 @@ missing_grades <- grades_long |>
   group_by(Id) |>
   summarise(Missing_by_stud = sum(is.na(value)))
 ```
+
+### Question 12
+
+```{r}
+#| echo: false
+#| message: false
+ggplot(missing_grades, aes(x=Missing_by_stud)) +
+  geom_histogram(binwidth = 1) +
+  labs(x = "Number of Missing Grades", y = "Frequency", title = "Distribution of Missing Grades per Student")
+```
