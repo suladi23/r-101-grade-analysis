@@ -14,6 +14,8 @@ library(vroom)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+library(knitr)
+library(stringr)
 ```
 
 ## Grade analisys LAB
