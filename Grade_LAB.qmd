@@ -203,3 +203,20 @@ missed_table <- grades |>
   select(Id, Missed) |>
   distinct()
 ```
+
+### Question 17
+
+```{r}
+#| message: false
+#| echo: false
+group_missed_table <- grades |>
+  rowwise() |>
+  mutate(Missed = any(is.na(c_across(starts_with("MCQ_"))))) |>
+  select(Id, Group, Missed) |>
+  distinct() |>
+  group_by(Group) |>
+  summarise(P_missed =(sum(Missed) / n() * 100))
+
+group_missed_table |>
+  knitr::kable()
+```
