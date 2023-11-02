@@ -177,3 +177,18 @@ missing_online_tests <- online_grades_long |>
   group_by(Id) |>
   summarise(Missing_Online_by_stud=sum(is.na(value)))
 ```
+
+### Question 15
+
+```{r}
+#| echo: false
+#| message: false
+grades_with_missing_online <- grades |>
+  left_join(missing_online_tests, by = "Id") |>
+  select(Id, Exam, starts_with("Online_MCQ"), Missing_Online_by_stud)
+
+
+ggplot(grades_with_missing_online, aes(x =Exam, y = Missing_Online_by_stud)) +
+  geom_point(na.rm = TRUE) +
+  labs(x = "Exam Grades", y = "# of Missing Online Tests", title = "Distribution of Grades at the Exam conditioned by Missing Online Tests")
+```
