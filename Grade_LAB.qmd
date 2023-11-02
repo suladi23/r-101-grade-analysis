@@ -115,3 +115,14 @@ ggplot(group_missed, aes(x=Group, y=Missed_Exam)) +
   labs(x = "Group", y = "# of Students Who Missed Exam", title = "Students Who Missed the Exam in Each Group") +
   theme(axis.text.x = element_text(angle = 90))
 ```
+
+### Question 10
+
+```{r}
+#| message: false
+grades_long <- grades |>
+  pivot_longer(cols = starts_with(("MCQ_")),
+    names_to = "name",
+    values_to = "value") |>
+  select(Id, Group, name, value)
+```
