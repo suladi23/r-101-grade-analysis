@@ -93,3 +93,14 @@ ggplot(grades, aes(x = Group, y = Exam)) +
   theme(axis.text.x = element_text(angle = 90))
 ```
 
+### Question 8
+
+```{r}
+#| echo: false
+#| message: false
+group_missed <- grades |>
+  group_by(Group) |>
+  summarise(Missed_Exam = sum(is.na(Exam)))
+group_missed |>
+  knitr::kable()
+```
