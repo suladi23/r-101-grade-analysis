@@ -158,3 +158,20 @@ group_missed_long <- grades_long |>
 group_missed_long |>
   knitr::kable()
 ```
+
+### Question 14
+
+For this question I created a new data.frame as in question 10, but with online exams, then I computed the number of missing grades for the online tests for each student
+
+```{r}
+online_grades_long <- grades |>
+  pivot_longer(cols = starts_with(("Online_MCQ_")),
+    names_to = "name",
+    values_to = "value") |>
+  select(Id, Group, name, value)
+
+missing_online_tests <- online_grades_long |>
+  filter(str_starts(Group, "grp_1")) |>
+  group_by(Id) |>
+  summarise(Missing_Online_by_stud=sum(is.na(value)))
+```
