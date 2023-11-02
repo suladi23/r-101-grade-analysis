@@ -19,6 +19,7 @@ library(ggplot2)
 ## Grade analisys LAB
 
 ### Question 1
+
 ```{r}
 #| echo: false
 #| message: false
@@ -26,6 +27,7 @@ grades <- vroom(here("grades.csv"))
 ```
 
 ### Question 2
+
 ```{r}
 grades |>
   summarise(min(Exam, na.rm = TRUE), max(Exam, na.rm = TRUE), mean(Exam,na.rm = TRUE),n()) |>
@@ -33,12 +35,15 @@ grades |>
 ```
 
 ### Question 3
+
 ```{r}
 missingstud<-sum(is.na(grades$Exam))
 ```
+
 There is a total of `r missingstud` students who passed the test
 
 ### Question 4
+
 ```{r}
 ggplot(grades, aes(x=Exam))+
   geom_histogram(binwidth=1.5, na.rm=TRUE) +
@@ -46,6 +51,7 @@ ggplot(grades, aes(x=Exam))+
 ```
 
 ### Question 5
+
 ```{r}
 grades |>
   group_by(Group) |>
@@ -54,16 +60,23 @@ grades |>
 ```
 
 ### Question 6
+
 ```{r}
-ggplot(grades, aes(x=grades$Group))+
-  geom_histogram(binwidth=1.5) +
-  labs(x="group", y= "number")
+group_counts <- grades |>
+  group_by(Group) |>
+  summarise(N = n())
+
+ggplot(group_counts, aes(x = Group, y = N)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Group", y = "Number of Students") +
+  ggtitle("Number of Students in Each Group") +
+  theme(axis.text.x = element_text(angle = 90))
 ```
 
 ### Question 7
+
 ```{r}
 ggplot(grades, aes(x = Group, y = Exam)) + 
   geom_boxplot() +
   labs(x="groups", y="grade")
 ```
-
