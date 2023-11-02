@@ -104,3 +104,14 @@ group_missed <- grades |>
 group_missed |>
   knitr::kable()
 ```
+
+### Question 9
+
+```{r}
+#| echo: false
+#| message: false
+ggplot(group_missed, aes(x=Group, y=Missed_Exam)) +
+  geom_col() +
+  labs(x = "Group", y = "# of Students Who Missed Exam", title = "Students Who Missed the Exam in Each Group") +
+  theme(axis.text.x = element_text(angle = 90))
+```
