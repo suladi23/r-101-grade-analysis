@@ -77,6 +77,19 @@ ggplot(group_counts, aes(x = Group, y = N)) +
 
 ```{r}
 ggplot(grades, aes(x = Group, y = Exam)) + 
-  geom_boxplot() +
-  labs(x="groups", y="grade")
+  geom_bar(stat = "identity", position = "dodge", na.rm = TRUE) +
+  labs(x="Group", y="Exam Grades", title = "Distribution of Grades at the Exam by Group") +
+  theme(axis.text.x = element_text(angle = 90))
 ```
+
+In the following representation we use the function geom_boxplot, that way we can see the median, quartiles and possible outliers
+
+```{r}
+#| echo: false
+#| message: false
+ggplot(grades, aes(x = Group, y = Exam)) +
+  geom_boxplot(na.rm = TRUE) +
+  labs(x = "Group", y = "Exam Grades", title = "Distribution of Grades at the Exam by Group") +
+  theme(axis.text.x = element_text(angle = 90))
+```
+
