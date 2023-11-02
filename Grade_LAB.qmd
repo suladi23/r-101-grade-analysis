@@ -126,3 +126,12 @@ grades_long <- grades |>
     values_to = "value") |>
   select(Id, Group, name, value)
 ```
+
+### Question 11
+
+```{r}
+#| message: false
+missing_grades <- grades_long |>
+  group_by(Id) |>
+  summarise(Missing_by_stud = sum(is.na(value)))
+```
