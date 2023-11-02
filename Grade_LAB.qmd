@@ -220,3 +220,20 @@ group_missed_table <- grades |>
 group_missed_table |>
   knitr::kable()
 ```
+
+### Question 18
+
+```{r}
+#| message: false
+#| echo: false
+avg_grade_per_group <- grades |>
+  group_by(Group) |>
+  summarise(Avg_Exam_Grade = mean(Exam, na.rm = TRUE))
+
+merged_table <- inner_join(group_missed_table, avg_grade_per_group, by = "Group")
+
+ggplot(merged_table, aes(x = P_missed, y = Avg_Exam_Grade)) +
+  geom_point() +
+  labs(x = "Percentage of Missed by group", y = "Average  Grade", title = "Avg Grade by Group vs. % Missed exam") +
+  theme_minimal()
+```
