@@ -192,3 +192,14 @@ ggplot(grades_with_missing_online, aes(x =Exam, y = Missing_Online_by_stud)) +
   geom_point(na.rm = TRUE) +
   labs(x = "Exam Grades", y = "# of Missing Online Tests", title = "Distribution of Grades at the Exam conditioned by Missing Online Tests")
 ```
+
+### Question 16
+
+```{r}
+#| message: false
+missed_table <- grades |>
+  rowwise() |>
+  mutate(Missed = any(is.na(c_across(starts_with("MCQ_"))))) |>
+  select(Id, Missed) |>
+  distinct()
+```
