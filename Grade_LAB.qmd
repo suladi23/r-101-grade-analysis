@@ -23,7 +23,6 @@ library(stringr)
 ### Question 1
 
 ```{r}
-#| echo: false
 #| message: false
 grades <- vroom(here("grades.csv"))
 ```
@@ -31,14 +30,18 @@ grades <- vroom(here("grades.csv"))
 ### Question 2
 
 ```{r}
+#| echo: false
+#| message: false
 grades |>
-  summarise(min(Exam, na.rm = TRUE), max(Exam, na.rm = TRUE), mean(Exam,na.rm = TRUE),n()) |>
+  summarise(min(Exam, na.rm = TRUE), max(Exam, na.rm = TRUE), median(Exam, na.rm=TRUE), mean(Exam,na.rm = TRUE),n()) |>
   knitr::kable()
 ```
 
 ### Question 3
 
 ```{r}
+#| echo: false
+#| message: false
 missingstud<-sum(is.na(grades$Exam))
 ```
 
@@ -47,14 +50,18 @@ There is a total of `r missingstud` students who passed the test
 ### Question 4
 
 ```{r}
+#| echo: false
+#| message: false
 ggplot(grades, aes(x=Exam))+
   geom_histogram(binwidth=1.5, na.rm=TRUE) +
-  labs(x="Exam grades", y= "count")
+  labs(x="Exam grades", y= "frequency")
 ```
 
 ### Question 5
 
 ```{r}
+#| echo: false
+#| message: false
 grades |>
   group_by(Group) |>
   summarise(N=n()) |>
@@ -64,6 +71,8 @@ grades |>
 ### Question 6
 
 ```{r}
+#| echo: false
+#| message: false
 group_counts <- grades |>
   group_by(Group) |>
   summarise(N = n())
@@ -78,6 +87,8 @@ ggplot(group_counts, aes(x = Group, y = N)) +
 ### Question 7
 
 ```{r}
+#| echo: false
+#| message: false
 ggplot(grades, aes(x = Group, y = Exam)) + 
   geom_bar(stat = "identity", position = "dodge", na.rm = TRUE) +
   labs(x="Group", y="Exam Grades", title = "Distribution of Grades at the Exam by Group") +
